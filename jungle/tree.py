@@ -471,9 +471,11 @@ class Tree:
     @staticmethod
     def name_internal_nodes(T):
         """ Assign names to internal nodes """
-        for i, node in enumerate(T.iter_descendants("levelorder")):
+        edge = 0
+        for node in T.traverse():
             if not node.is_leaf():
-                node.name = "_" + str(i)
+                node.name = "NODE_%d" %edge
+                edge += 1
 
     def dump(self, filename, gzip=None):
         """ Save Tree to disk
